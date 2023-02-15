@@ -1,7 +1,5 @@
-export type SelectorFunction<T> = (row: T) => string | number
-
 type Column = {
-  selector: SelectorFunction<object>
+  selector: <T>(row: T) => string | number
   label: string
   sortable?: boolean
   cell?: (row: object) => JSX.Element
