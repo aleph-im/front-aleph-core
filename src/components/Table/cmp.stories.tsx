@@ -1,22 +1,22 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React from 'react'
+import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { withDesign } from 'storybook-addon-designs'
-import Table from "./cmp";
-import Icon from "../Icon";
-import { TableProps, StyledTableProps } from "./types";
+import Table from './cmp'
+import Icon from '../Icon'
+import { TableProps, StyledTableProps } from './types'
 import { data, Pets } from './fixture/data'
 
 export default {
-  title: "Components/UI/Table",
+  title: 'Components/UI/Table',
   component: Table,
   decorators: [withDesign],
-} as ComponentMeta<typeof Table>;
+} as ComponentMeta<typeof Table>
 
 const defaultArgs: Partial<StyledTableProps> = {
   bordered: true,
 }
 
-const dataArgs : Partial<TableProps> = {
+const dataArgs: Partial<TableProps> = {
   data,
   columns: [
     {
@@ -26,13 +26,15 @@ const dataArgs : Partial<TableProps> = {
       cell: (row: any) => (
         <div>
           <strong>{row.name}</strong>
-          {
-            row.gender !== 'undisclosed' &&
+          {row.gender !== 'undisclosed' && (
             <>
               &nbsp;
-              <Icon name={row.gender === 'female' ? 'venus' : 'mars'} color="red" />
+              <Icon
+                name={row.gender === 'female' ? 'venus' : 'mars'}
+                color="red"
+              />
             </>
-          }
+          )}
         </div>
       ),
     },
@@ -44,17 +46,18 @@ const dataArgs : Partial<TableProps> = {
     {
       label: 'Job',
       selector: (row: any) => row.job,
-      sortable: false
+      sortable: false,
     },
     {
       label: 'Number of pets',
-      selector: (row: any): number => (
-        Object.values(row.pets as Pets)
-        .reduce((acc: number, curr:number): number => acc + curr, 0)
-      ),
+      selector: (row: any): number =>
+        Object.values(row.pets as Pets).reduce(
+          (acc: number, curr: number): number => acc + curr,
+          0,
+        ),
       sortable: true,
-    }
-  ]
+    },
+  ],
 }
 
 const defaultParams = {
@@ -66,12 +69,14 @@ const defaultParams = {
 
 // ---
 
-const Template: ComponentStory<typeof Table> = (args) => <Table {...args} {...dataArgs} />;
+const Template: ComponentStory<typeof Table> = (args) => (
+  <Table {...args} {...dataArgs} />
+)
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   ...defaultArgs,
-};
+}
 Default.parameters = {
   ...defaultParams,
 }

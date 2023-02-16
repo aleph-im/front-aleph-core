@@ -1,40 +1,42 @@
-import styled, { css } from "styled-components"
-import { StyledTableProps } from "./types"
+import styled, { css } from 'styled-components'
+import { StyledTableProps } from './types'
 
 export const StyledTable = styled.table<StyledTableProps>`
   ${({ bordered = false }) => css`
     width: 100%;
 
-    ${bordered ? 
-      css` 
-      border-collapse: separate;
-      ` 
-      : css` 
-        border-collapse: collapse;
-      `
-    }
+    ${bordered
+      ? css`
+          border-collapse: separate;
+        `
+      : css`
+          border-collapse: collapse;
+        `}
 
     thead {
       text-transform: uppercase;
     }
 
-    td, th{ 
+    td,
+    th {
       text-align: left;
       padding: 15px 0;
 
-      ${bordered && css`
-        border-bottom: 1px solid #FFFFFF22;
+      ${bordered &&
+      css`
+        border-bottom: 1px solid #ffffff22;
       `}
     }
 
-    th.sortable{
+    th.sortable {
       cursor: pointer;
     }
-    
-    tr{
+
+    tr {
       ${bordered &&
-        css` border-bottom: 1px solid #FFFFFF22;` 
-      }
+      css`
+        border-bottom: 1px solid #ffffff22;
+      `}
     }
   `}
 `
