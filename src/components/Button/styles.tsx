@@ -1,13 +1,20 @@
-import styled, { css, DefaultTheme, FlattenSimpleInterpolation } from "styled-components"
-import { StyledButtonProps } from "./types"
+import styled, {
+  css,
+  DefaultTheme,
+  FlattenSimpleInterpolation,
+} from 'styled-components'
+import { getGlowMinEffectCss } from '../../styles'
+import { StyledButtonProps } from './types'
 
-const colorGradient = (color: string) => `linear-gradient(0deg, ${color}, ${color})`
-
-const defaultVariants = (props: StyledButtonProps & { theme: DefaultTheme }) => {
-  const { theme, color, size, variant, kind } = props
+const defaultVariants = (
+  props: StyledButtonProps & { theme: DefaultTheme },
+) => {
+  const { theme, color, variant, kind } = props
   const mainColor = theme.color[color] || color
   const [g0, g1] = theme.gradient[color]?.colors || [color, color]
-  const glowMin = theme.effect.glow.min[color]
+
+  // @todo: Fix this
+  const glowMinCss = getGlowMinEffectCss(color, { width: 192, height: 192 })
 
   if (kind === 'flat') {
     switch (variant) {
@@ -50,7 +57,7 @@ const defaultVariants = (props: StyledButtonProps & { theme: DefaultTheme }) => 
           color: ${theme.color.background};
           background-image: linear-gradient(90deg, ${g0} 0%, ${g1} 100%);
 
-          ${glowMin}
+          ${glowMinCss}
 
           &::after {
             display: none;
@@ -109,23 +116,27 @@ const focusVariants = (props: StyledButtonProps & { theme: DefaultTheme }) => {
   `
 }
 
-const hoverVariants = (props: StyledButtonProps & { theme: DefaultTheme }) => {
-  return css`
-  `
+const hoverVariants = () => {
+  return css``
 }
 
-const activeVariants = (props: StyledButtonProps & { theme: DefaultTheme }, defaultVariantsCss?: FlattenSimpleInterpolation) => {
+const activeVariants = (
+  props: StyledButtonProps & { theme: DefaultTheme },
+  defaultVariantsCss?: FlattenSimpleInterpolation,
+) => {
   const { variant } = props
 
   return css`
     ${defaultVariantsCss}
-    ${(variant === 'tertiary') ? `background-image: none;` : ''}
+    ${variant === 'tertiary' ? `background-image: none;` : ''}
     box-shadow: none;
     backdrop-filter: none;
   `
 }
 
-const disableVariants = (props: StyledButtonProps & { theme: DefaultTheme }) => {
+const disableVariants = (
+  props: StyledButtonProps & { theme: DefaultTheme },
+) => {
   const { theme } = props
 
   return css`
@@ -146,12 +157,12 @@ const disableVariants = (props: StyledButtonProps & { theme: DefaultTheme }) => 
 
 export const StyledButton = styled.button<StyledButtonProps>`
   ${(props) => {
-    const { theme, color, size, variant, kind } = props
+    const { theme, color, size, variant } = props
     const mainColor = theme.color[color] || color
 
     const defaultVariantsCss = defaultVariants(props)
     const focusVariantsCss = focusVariants(props)
-    const hoverVariantsCss = hoverVariants(props)
+    const hoverVariantsCss = hoverVariants()
     const activeVariantsCss = activeVariants(props, defaultVariantsCss)
     const disableVariantsCss = disableVariants(props)
 
@@ -164,7 +175,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
       justify-content: center;
       align-items: center;
       text-align: center;
-      font-weight: 700;
+      font-weight: ${theme.button.font.weight};
+      font-family: ${theme.button.font.family};
+      font-style: ${theme.button.font.style};
       margin: 0;
       padding: 8px 22px;
       width: auto;
@@ -180,7 +193,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
       background-color: transparent;
       outline: 0;
       color: ${theme.color.text};
-      transform: transale3d(0,0,0); 
+      transform: transale3d(0, 0, 0);
 
       /* BORDER */
       &::after {
@@ -188,16 +201,15 @@ export const StyledButton = styled.button<StyledButtonProps>`
         content: '';
         position: absolute;
         top: 0;
+        left: 0;
         height: 100%;
         width: 100%;
         box-sizing: border-box;
-        background-color: ${mainColor}; 
+        background-color: ${mainColor};
         z-index: 1;
         padding: 1px;
         border-radius: 30px;
-        mask: 
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         mask-composite: exclude;
         -webkit-mask-composite: xor;
       }
@@ -209,13 +221,15 @@ export const StyledButton = styled.button<StyledButtonProps>`
         ${focusVariantsCss}
       }
 
-      &:hover, &._hover {
+      &:hover,
+      &._hover {
         ${hoverVariantsCss}
       }
 
-      &:active, &._active {
+      &:active,
+      &._active {
         ${activeVariantsCss}
-      } 
+      }
 
       &[disabled] {
         ${disableVariantsCss}
@@ -226,12 +240,14 @@ export const StyledButton = styled.button<StyledButtonProps>`
         switch (size) {
           case 'regular': {
             return css`
-              font-size: ${theme.button.size.regular - (variant !== 'text-only' ? 0 : 0.25)}rem;
+              font-size: ${theme.button.font.size.regular -
+              (variant !== 'text-only' ? 0 : 0.25)}rem;
             `
           }
           case 'big': {
             return css`
-              font-size: ${theme.button.size.big - (variant !== 'text-only' ? 0 : 0.375)}rem;
+              font-size: ${theme.button.font.size.big -
+              (variant !== 'text-only' ? 0 : 0.375)}rem;
             `
           }
         }

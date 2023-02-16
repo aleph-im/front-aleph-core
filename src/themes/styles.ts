@@ -1,14 +1,19 @@
+import {
+  FlattenInterpolation,
+  FlattenSimpleInterpolation,
+} from 'styled-components'
+
 export type TypoSizeKind = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type TypoSize = Record<TypoSizeKind, number>
 
-export type TypoKind = 'header' | 'body' | 'body2' | 'body3' | 'code' | 'code2' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'h7'
 export type Typo = {
-  size: number,
+  tag: boolean
+  size: number
   family: string
   weight: number
   style: string
 }
-export type ThemeTypo = Record<TypoKind, Typo>
+export type ThemeTypo = Record<string, Typo>
 
 export type Gradient = {
   colors: string[]
@@ -16,6 +21,7 @@ export type Gradient = {
   deg: number
   fn: string
 }
+
 export type ThemeGradient = {
   [k: string]: Gradient
 
@@ -48,6 +54,44 @@ export type ThemeColor = {
   text: string
 }
 
+export type ThemeGlowEffectCss =
+  | FlattenSimpleInterpolation
+  | FlattenInterpolation<any>
+  | undefined
+
+export type ThemeGlowEffect = {
+  [k: string]: ThemeGlowEffectCss
+
+  main0: ThemeGlowEffectCss
+  main1: ThemeGlowEffectCss
+  main2: ThemeGlowEffectCss
+
+  extra0: ThemeGlowEffectCss
+  extra1: ThemeGlowEffectCss
+}
+
+export type ThemeGlassEffectCss = ThemeGlowEffectCss
+
+export type ThemeGlassEffect = {
+  [k: string]: ThemeGlassEffectCss
+
+  main0: ThemeGlassEffectCss
+  main1: ThemeGlassEffectCss
+  main2: ThemeGlassEffectCss
+
+  base0: ThemeGlassEffectCss
+  base1: ThemeGlassEffectCss
+  base2: ThemeGlassEffectCss
+}
+
+export type ThemeDarkEffectCss = ThemeGlassEffectCss
+
+export type ThemeDarkEffect = {
+  [k: string]: ThemeDarkEffectCss
+
+  main0: ThemeDarkEffectCss
+}
+
 export type ThemeFont = {
   url: string
   size: {
@@ -65,9 +109,14 @@ export type ThemeFont = {
 }
 
 export type ThemeButton = {
-  size: {
-    regular: number
-    big: number
+  font: {
+    family: string
+    weight: number
+    style: string
+    size: {
+      regular: number
+      big: number
+    }
   }
 }
 
@@ -81,15 +130,24 @@ export type ThemeIcon = {
   }
 }
 
+export type ThemeEffect = {
+  glow: {
+    max: ThemeGlowEffect
+    min: Partial<ThemeGlowEffect>
+    hover: Partial<ThemeGlowEffect>
+  }
+  glass: ThemeGlassEffect
+  dark: ThemeDarkEffect
+}
+
 export interface CoreTheme {
   name: string
   // palette: Record<string, string[]>
   font: ThemeFont
-  color: ThemeColor,
+  color: ThemeColor
   typo: ThemeTypo
   icon: ThemeIcon
   button: ThemeButton
   gradient: ThemeGradient
-  effect: any
+  effect: ThemeEffect
 }
-
