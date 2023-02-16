@@ -4,7 +4,7 @@ import { withDesign } from 'storybook-addon-designs'
 import Table from "./cmp";
 import Icon from "../Icon";
 import { TableProps } from "./types";
-import { data, Person, Pets } from './fixture/data'
+import { data, Pets } from './fixture/data'
 
 export default {
   title: "Components/UI/Table",
@@ -17,9 +17,9 @@ const defaultArgs: Partial<TableProps> = {
   columns: [
     {
       label: 'Name',
-      selector: (row: Person) => row.name,
+      selector: (row: any) => row.name,
       sortable: true,
-      cell: (row: Person) => (
+      cell: (row: any) => (
         <div>
           <strong>{row.name}</strong>
           {
@@ -34,17 +34,17 @@ const defaultArgs: Partial<TableProps> = {
     },
     {
       label: 'Age',
-      selector: (row: Person) => row.age,
+      selector: (row: any) => row.age,
       sortable: true,
     },
     {
       label: 'Job',
-      selector: (row: Person) => row.job,
+      selector: (row: any) => row.job,
       sortable: false
     },
     {
       label: 'Number of pets',
-      selector: (row: Person): number => (
+      selector: (row: any): number => (
         Object.values(row.pets as Pets)
         .reduce((acc: number, curr:number): number => acc + curr, 0)
       ),
