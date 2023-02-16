@@ -14,7 +14,6 @@ export default {
       control: { type: 'inline-radio' },
     },
   },
-
 } as ComponentMeta<typeof Icon>;
 
 const defaultArgs: Partial<IconProps> = {

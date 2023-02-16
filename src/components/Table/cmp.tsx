@@ -1,6 +1,6 @@
 import React from "react"
 import { StyledTable } from "./styles"
-import { TableProps } from "./types"
+import { TableProps, StyledTableProps } from "./types"
 import Icon from "../Icon"
 
 type SortDirection = "asc" | "desc"
@@ -9,7 +9,7 @@ const toggleSort = (sort: SortDirection): SortDirection => {
   return sort === "asc" ? "desc" : "asc"
 }
 
-const Table = ({ columns, data, ...rest }: TableProps) => {
+const Table = ({ columns, data, bordered, ...rest }: TableProps & StyledTableProps) => {
   const isSortedColumn = (column: string) => sortedColumn.column === column
   const [sortedColumn, setSortedColumn] = React.useState({ column: "", direction: "asc" })
   const sortedData = React.useMemo(() => (
@@ -34,7 +34,7 @@ const Table = ({ columns, data, ...rest }: TableProps) => {
   ), [data, sortedColumn])
 
   return (
-    <StyledTable>
+    <StyledTable bordered={bordered}>
       <thead>
         <tr>
           {

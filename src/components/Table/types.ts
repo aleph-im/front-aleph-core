@@ -9,3 +9,7 @@ export type TableProps = {
   columns: Column[]
   data: object[]
 }
+
+export type StyledTableProps = {
+  bordered?: boolean
+}

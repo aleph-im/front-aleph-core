@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { withDesign } from 'storybook-addon-designs'
 import Table from "./cmp";
 import Icon from "../Icon";
-import { TableProps } from "./types";
+import { TableProps, StyledTableProps } from "./types";
 import { data, Pets } from './fixture/data'
 
 export default {
@@ -12,7 +12,11 @@ export default {
   decorators: [withDesign],
 } as ComponentMeta<typeof Table>;
 
-const defaultArgs: Partial<TableProps> = {
+const defaultArgs: Partial<StyledTableProps> = {
+  bordered: true,
+}
+
+const dataArgs : Partial<TableProps> = {
   data,
   columns: [
     {
@@ -62,7 +66,7 @@ const defaultParams = {
 
 // ---
 
-const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;
+const Template: ComponentStory<typeof Table> = (args) => <Table {...args} {...dataArgs} />;
 
 export const Default = Template.bind({});
 Default.args = {
