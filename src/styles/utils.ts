@@ -64,5 +64,11 @@ export function getThemeDarkEffectCss(color: string) {
   `
 }
 
+export function getThemeNoiseEffectCss(color: string) {
+  return css`
+    ${theme.effect.noise[color]}
+  `
+}
+
 export const colorGradient = (color: string) =>
   `linear-gradient(0deg, ${color}, ${color})`

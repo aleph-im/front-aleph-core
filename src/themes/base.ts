@@ -7,6 +7,7 @@ import {
   getGlowMinEffectCss,
   pxToRem,
 } from '../styles'
+import { getNoiseEffectCss } from '../styles/noise'
 import {
   ThemeButton,
   ThemeColor,
@@ -101,6 +102,14 @@ const effect: ThemeEffect = {
   dark: {
     main0: getDarkEffectCss('main0'),
   },
+  noise: {
+    main0: getNoiseEffectCss('main0'),
+    main1: getNoiseEffectCss('main1'),
+    main2: getNoiseEffectCss('main2'),
+    base0: getNoiseEffectCss('base0'),
+    base1: getNoiseEffectCss('base1'),
+    base2: getNoiseEffectCss('base2'),
+  }
 }
 
 const font: ThemeFont = {

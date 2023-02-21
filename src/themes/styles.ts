@@ -72,42 +72,50 @@ export type ThemeColor = {
   text: string
 }
 
-export type ThemeGlowEffectCss =
+export type GenericThemeEffectCss =
   | FlattenSimpleInterpolation
   | FlattenInterpolation<any>
   | undefined
 
 export type ThemeGlowEffect = {
-  [k: string]: ThemeGlowEffectCss
+  [k: string]: GenericThemeEffectCss
 
-  main0: ThemeGlowEffectCss
-  main1: ThemeGlowEffectCss
-  main2: ThemeGlowEffectCss
+  main0: GenericThemeEffectCss
+  main1: GenericThemeEffectCss
+  main2: GenericThemeEffectCss
 
-  extra0: ThemeGlowEffectCss
-  extra1: ThemeGlowEffectCss
+  extra0: GenericThemeEffectCss
+  extra1: GenericThemeEffectCss
 }
-
-export type ThemeGlassEffectCss = ThemeGlowEffectCss
 
 export type ThemeGlassEffect = {
-  [k: string]: ThemeGlassEffectCss
+  [k: string]: GenericThemeEffectCss
 
-  main0: ThemeGlassEffectCss
-  main1: ThemeGlassEffectCss
-  main2: ThemeGlassEffectCss
+  main0: GenericThemeEffectCss
+  main1: GenericThemeEffectCss
+  main2: GenericThemeEffectCss
 
-  base0: ThemeGlassEffectCss
-  base1: ThemeGlassEffectCss
-  base2: ThemeGlassEffectCss
+  base0: GenericThemeEffectCss
+  base1: GenericThemeEffectCss
+  base2: GenericThemeEffectCss
 }
 
-export type ThemeDarkEffectCss = ThemeGlassEffectCss
+export type ThemeNoiseEffect = {
+  [k: string]: GenericThemeEffectCss
+
+  main0: GenericThemeEffectCss
+  main1: GenericThemeEffectCss
+  main2: GenericThemeEffectCss
+
+  base0: GenericThemeEffectCss
+  base1: GenericThemeEffectCss
+  base2: GenericThemeEffectCss
+}
 
 export type ThemeDarkEffect = {
-  [k: string]: ThemeDarkEffectCss
+  [k: string]: GenericThemeEffectCss
 
-  main0: ThemeDarkEffectCss
+  main0: GenericThemeEffectCss
 }
 
 export type ThemeFont = {
@@ -158,6 +166,7 @@ export type ThemeEffect = {
   }
   glass: ThemeGlassEffect
   dark: ThemeDarkEffect
+  noise: ThemeNoiseEffect
 }
 
 export interface CoreTheme {

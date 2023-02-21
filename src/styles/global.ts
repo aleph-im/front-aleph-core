@@ -6,6 +6,7 @@ import {
   getThemeDarkEffectCss,
   getThemeGlassEffectCss,
   getThemeGlowEffectCss,
+  getThemeNoiseEffectCss,
   getTypoCss,
 } from './utils'
 
@@ -144,7 +145,7 @@ function effectClasses(theme: DefaultTheme) {
           }
         `,
     ),
-  )}
+    )}
 
     /* GLASS */
     ${Object.keys(theme.effect.glass).map(
@@ -153,17 +154,25 @@ function effectClasses(theme: DefaultTheme) {
           ${getThemeGlassEffectCss(glassColor)}
         }
       `,
-  )}
+    )}
 
-    /* GLASS */
+    /* DARK */
     ${Object.keys(theme.effect.dark).map(
     (darkColor) => css`
         .fx-dark-${darkColor} {
           ${getThemeDarkEffectCss(darkColor)}
         }
       `,
-  )}
+    )}
+
+  /* NOISE */
+    ${Object.keys(theme.effect.noise).map(noiseColor => css`
+      .fx-noise-${noiseColor} {
+        ${getThemeNoiseEffectCss(noiseColor)}
+      }`
+    )}
   `
+
 }
 
 export default GlobalStyle
