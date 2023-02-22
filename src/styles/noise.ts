@@ -16,27 +16,19 @@ export function getNoiseEffectCss(color: keyof ThemeColor, opacity?: number) {
 
       return css`
         position: relative;
-
-        &::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          z-index: -1;
-          opacity: ${opacity || 1};
-          border-radius: inherit;
-          background-blend-mode: overlay;
-          mask-image: ${SVGMask}};
-          -webkit-mask-image: ${SVGMask};
-          ${
-            color in isGradientFill
-              ? `background-image: ${getGradient(color)}`
-              : `
-            background-color: ${theme.color[color]};
+        mask-image: ${SVGMask}};
+        -webkit-mask-image: ${SVGMask};
+        background-blend-mode: overlay;
+        ${
+          color in isGradientFill
+            ? `
+            background-image: ${getGradient(
+              color,
+            )};
             `
-          }
+            : `
+          background-color: ${theme.color[color]};
+          `
         }
       `
     }}
