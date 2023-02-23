@@ -58,7 +58,7 @@ const tabs = [
           This section allows you to manage your subscription and payment
           information, view your billing history, and update your billing
           preferences. You can also manage any additional services or add-ons
-          that you've subscribed to.
+          that you&#39;ve subscribed to.
         </p>
       </div>
     ),

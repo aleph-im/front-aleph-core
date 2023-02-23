@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { StyledTabsHeader, StyledTabsItem } from "./styles";
 import { TabsProps } from "./types";
 import TextGradient from "../TextGradient";
@@ -22,17 +22,17 @@ const Tabs = ({
       <StyledTabsHeader>
         {tabs.map((tab, i) =>
           i === selected ? (
-            <StyledTabsItem isSelected>
+            <StyledTabsItem isSelected key={i}>
               <TextGradient color="main0" type="body">
                 {tab.name}
               </TextGradient>
             </StyledTabsItem>
           ) : (
-            <StyledTabsItem onClick={() => handleClick(i)}>
+            <StyledTabsItem onClick={() => handleClick(i)} key={i}>
               {tab.name}
             </StyledTabsItem>
           ),
-        )}
+        ) }
       </StyledTabsHeader>
       {tabs[selected].component}
     </>
