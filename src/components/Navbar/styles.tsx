@@ -1,24 +1,25 @@
 import styled, { css } from 'styled-components'
 import { NavlinkProps, ResponsiveNavBarProps } from './types'
+import { getResponsiveCss } from '../../styles'
 
 // Main container
 export const StyledNavbarWrapper = styled.div`
     ${({ theme }) => {
         return css`
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
           position: sticky;
           top: 0;
           background-color: ${theme.color.base1};
 
-          @media (max-width: 480px) {
-            display: block;
-            padding: 0;
-          }
+          ${getResponsiveCss('md', css`
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            `
+          )}
         `
     }}
 `
+
 
 // A wrapper for the logo and burger icon (heading in mobile)
 export const StyledHeadingWrapper = styled.div<ResponsiveNavBarProps>`
@@ -37,11 +38,12 @@ export const StyledHeadingWrapper = styled.div<ResponsiveNavBarProps>`
 export const StyledBurgerIconWrapper = styled.div`
   ${() => {
     return css`
-      display: none;
+      display: block;
 
-      @media (max-width: 480px) {
-        display: block;
-      }
+      ${getResponsiveCss('md', css`
+          display: none;
+        `
+      )}
     `
   }}
 `
@@ -50,14 +52,15 @@ export const StyledBurgerIconWrapper = styled.div`
 export const StyledNavWrapper = styled.nav<ResponsiveNavBarProps>`
   ${({ isOpen }) => {
     return css`
-      display: flex;
-      align-items: center;
-      margin: 0;
+      display: ${isOpen ? 'block' : 'none'};
+      padding-bottom: 25px;
 
-      @media (max-width: 480px) {
-        display: ${isOpen ? 'block' : 'none'};
-        padding-bottom: 25px;
-      }
+      ${getResponsiveCss('md', css`
+          display: flex;
+          align-items: center;
+          padding: 0;
+        `,
+      )}
     `
   }}
 `
@@ -66,21 +69,25 @@ export const StyledNavWrapper = styled.nav<ResponsiveNavBarProps>`
 export const StyledNavlinks = styled.ul`
     ${() => {
         return css`
-          display: flex;
-          align-items: center;
+          display: list-item;
           list-style: none;
-          padding: 0;
+          padding: 0 25px;
           margin: 0;
 
-          @media (max-width: 480px) {
-            display: list-item;
-            list-style: none;
-            padding: 0 25px;
-
-            &::first-child {
-              margin-top: 25px;
-            }
+          &::first-child {
+            margin-top: 25px;
           }
+
+          ${getResponsiveCss('md', css`
+              display: flex;
+              align-items: center;
+              padding: 0;
+
+              &::first-child {
+                margin-top: 0;
+              }
+            `,
+          )}
         `
     }}
 `
@@ -90,6 +97,8 @@ export const StyledNavlink = styled.li<NavlinkProps>`
   ${({ withSlash }) => {
     return css`
       font-weight: 400;
+      margin: 10px 0;
+      padding: 0;
 
       a,
       span {
@@ -97,26 +106,22 @@ export const StyledNavlink = styled.li<NavlinkProps>`
         text-decoration: none;
       }
 
-      ${withSlash
-        ? css`
-            &:not(:last-child)::after {
-              content: '/';
-              display: inline-block;
-              padding: 0 1rem;
-            }
-          `
-        : css`
-            padding: 0 1rem;
-          `}
-
-      @media (max-width: 480px) {
-        margin: 10px 0;
-
-        &:not(:last-child)::after {
-          content: '';
-        }
-        padding: 0;
-      }
+      ${getResponsiveCss('md', css`
+          margin: 0;
+          
+          ${withSlash
+            ? css`
+                &:not(:last-child)::after {
+                  content: '/';
+                  display: inline-block;
+                  padding: 0 1rem;
+                }
+              `
+            : css`
+                padding: 0 1rem;
+              `}
+        `,
+      )}
     `
   }}
 `
