@@ -1,11 +1,12 @@
-import { css } from 'styled-components'
+import { css, SimpleInterpolation } from 'styled-components'
 import theme from '../themes/base'
 import {
+  BreakpointId,
   ThemeColor,
   ThemeEffect,
   ThemeGradient,
   ThemeTypo,
-} from '../themes/styles'
+} from '../themes/types'
 
 export const round = (n: number, precission: number) => {
   const m = 10 ** precission
@@ -72,3 +73,13 @@ export function getThemeNoiseEffectCss(color: string) {
 
 export const colorGradient = (color: string) =>
   `linear-gradient(0deg, ${color}, ${color})`
+
+export function getResponsiveCss(breakpoint: BreakpointId, styles: string | SimpleInterpolation, offset: number = 1) {
+  return css`
+    ${({ theme }) => css`
+      @media (min-width: ${theme.breakpoint[breakpoint] + pxToRem(offset)}rem) {
+        ${styles}
+      }
+    `}
+  `
+}

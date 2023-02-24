@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
-import { ThemeColor } from '../themes/styles'
+import { ThemeColor } from '../themes/types'
 
 enum isGradientFill { main0, main1, main2 }
 
