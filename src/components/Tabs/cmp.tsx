@@ -19,7 +19,7 @@ const Tabs = ({
 
   return (
     <>
-      <StyledTabsHeader>
+      <StyledTabsHeader role="tablist">
         {tabs.map((tab, i) => {
           const getTabLabel = () => {
             if (tab.label !== undefined) {
@@ -33,14 +33,24 @@ const Tabs = ({
 
           if (tab.disabled) {
             return (
-              <StyledTabsItem isDisabled key={i}>
+              <StyledTabsItem
+                isDisabled
+                key={i}
+                role="tab"
+                aria-disabled="true"
+              >
                 {tab.name} {getTabLabel()}
               </StyledTabsItem>
             )
           }
           else if (i === selected) {
             return (
-              <StyledTabsItem isSelected key={i}>
+              <StyledTabsItem
+                isSelected
+                key={i}
+                role="tab"
+                aria-selected="true"
+              >
                 <TextGradient color="main0" type="body">
                   {tab.name}
                 </TextGradient>
@@ -49,13 +59,20 @@ const Tabs = ({
             )
           }
           return (
-            <StyledTabsItem onClick={() => handleClick(i)} key={i}>
+            <StyledTabsItem
+              onClick={() => handleClick(i)}
+              key={i}
+              role="tab"
+              aria-selected="false"
+            >
               {tab.name} {getTabLabel()}
             </StyledTabsItem>
           )
          })}
       </StyledTabsHeader>
-      {tabs[selected].component}
+      <div role="tabpanel">
+        {tabs[selected].component}
+      </div>
     </>
   )
 }
