@@ -7,18 +7,22 @@ export const StyledTabsHeader = styled.div`
 `
 
 export const StyledTabsItem = styled.div<StyledTabItemProps>`
-  ${({ theme, isSelected }) => {
+  ${({ theme, isSelected, isDisabled }) => {
     return css`
       padding: 15px;
       position: relative;
       font-weight: bold;
       ${ !isSelected && 'cursor: pointer;' }
+      color: ${isDisabled ? theme.color.base0 + '66' : theme.color.base0};
+      display: flex;
+      line-height: 1rem;
+      height: 1rem;
 
       &::after {
         content: '';
         height: 2px;
         width: 100%;
-        background: ${isSelected ? theme.gradient.main0.fn : theme.color.base0};
+        background: ${isSelected ? theme.gradient.main0.fn : theme.color.base0 + '66'};
         display: block;
         position: absolute;
         bottom: 0;
@@ -35,3 +39,10 @@ export const StyledTabsItem = styled.div<StyledTabItemProps>`
   }}
 `
 
+export const StyledTabLabel = styled.div`
+  ${ ({ theme }) => css`
+    transform: translate(5px, -10px);
+    color: ${theme.color.base0};
+  ` 
+  }
+`

@@ -1,6 +1,8 @@
 export type Tab = {
   name: string
   component: JSX.Element
+  disabled?: boolean
+  label?: string
 }
 
 export type TabsProps = {
@@ -10,5 +12,6 @@ export type TabsProps = {
 }
 
 export type StyledTabItemProps = {
-  isSelected: boolean
+  isSelected?: boolean
+  isDisabled?: boolean
 }

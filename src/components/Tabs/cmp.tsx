@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyledTabsHeader, StyledTabsItem } from "./styles";
+import { StyledTabsHeader, StyledTabsItem, StyledTabLabel } from "./styles";
 import { TabsProps } from "./types";
 import TextGradient from "../TextGradient";
 
@@ -10,7 +10,7 @@ const Tabs = ({
   defaultSelected = 0,
   onTabChange = noop
 }: TabsProps) => {
-  const safeDefault = defaultSelected < tabs.length ? defaultSelected : 0
+  const safeDefault = (tabs[defaultSelected] && !tabs[defaultSelected].disabled) ? defaultSelected : 0
   const [selected, setSelected] = useState<number>(safeDefault)
   const handleClick = (i: number) => {
     onTabChange(selected, i)
@@ -20,19 +20,40 @@ const Tabs = ({
   return (
     <>
       <StyledTabsHeader>
-        {tabs.map((tab, i) =>
-          i === selected ? (
-            <StyledTabsItem isSelected key={i}>
-              <TextGradient color="main0" type="body">
-                {tab.name}
-              </TextGradient>
-            </StyledTabsItem>
-          ) : (
+        {tabs.map((tab, i) => {
+          const getTabLabel = () => {
+            if (tab.label !== undefined) {
+              return (
+                <StyledTabLabel className="tp-info">
+                  {tab.label}
+                </StyledTabLabel>
+              )
+            }
+          }
+
+          if (tab.disabled) {
+            return (
+              <StyledTabsItem isDisabled key={i}>
+                {tab.name} {getTabLabel()}
+              </StyledTabsItem>
+            )
+          }
+          else if (i === selected) {
+            return (
+              <StyledTabsItem isSelected key={i}>
+                <TextGradient color="main0" type="body">
+                  {tab.name}
+                </TextGradient>
+                {getTabLabel()}
+              </StyledTabsItem>
+            )
+          }
+          return (
             <StyledTabsItem onClick={() => handleClick(i)} key={i}>
-              {tab.name}
+              {tab.name} {getTabLabel()}
             </StyledTabsItem>
-          ),
-        ) }
+          )
+         })}
       </StyledTabsHeader>
       {tabs[selected].component}
     </>

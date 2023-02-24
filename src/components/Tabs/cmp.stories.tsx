@@ -62,6 +62,13 @@ const tabs = [
         </p>
       </div>
     ),
+    label: 'NEW',
+  },
+  {
+    name: 'Notifications',
+    component: <div />,
+    disabled: true,
+    label: 'SOON',
   },
 ]
 
