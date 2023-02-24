@@ -1,10 +1,10 @@
 import Button from '../Button'
 
 export type NavbarProps = {
-    withLabel?: boolean
-    withLogo?: boolean
-    navLinks?: React.FC[]
-    navButtons?: Array<typeof Button>
+  withLabel?: boolean
+  withLogo?: boolean
+  navLinks?: React.ReactNode[]
+  navButtons?: React.ReactNode[]
 }
 
 export type ResponsiveNavBarProps = {

@@ -43,7 +43,7 @@ const Navbar = ({
           <StyledNavlinks>
             {navLinks.map((el, index) => (
               <StyledNavlink key={index} withSlash>
-                {el()}
+                {el}
               </StyledNavlink>
             ))}
           </StyledNavlinks>
@@ -52,7 +52,7 @@ const Navbar = ({
         {navButtons && (
           <StyledNavlinks>
             {navButtons.map((el, index) => (
-              <StyledNavlink key={index}>{el()}</StyledNavlink>
+              <StyledNavlink key={index}>{el}</StyledNavlink>
             ))}
           </StyledNavlinks>
         )}

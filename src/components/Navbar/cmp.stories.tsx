@@ -14,27 +14,26 @@ export default {
 const defaultArgs: Partial<NavbarProps> = {
   withLabel: true,
   withLogo: true,
-  navLinks: [
-    () => <a href="#">Solutions</a>,
-    () => <a href="#">Indexing</a>,
-    () => <a href="#">Roadmap</a>,
-    () => <a href="#">Insights</a>,
-    () => <a href="#">Team</a>,
-  ],
-  navButtons: [
-    () => (
-      <Button variant="secondary" color="main0" kind="neon" size="regular">
-        Whitepaper
-      </Button>
-    ),
-  ],
 }
 
 // ---
 
+const navLinks = [
+  <a href="#">Solutions</a>,
+  <a href="#">Indexing</a>,
+  <a href="#">Roadmap</a>,
+  <a href="#">Insights</a>,
+  <a href="#">Team</a>,
+]
+const navButtons = [
+  <Button as="a" variant="secondary" color="main0" kind="neon" size="regular">
+    Whitepaper
+  </Button>
+]
+
 const Template: ComponentStory<typeof Navbar> = (args) => (
   <>
-    <Navbar {...args} />
+    <Navbar {...args} navLinks={navLinks} navButtons={navButtons}  />
 
     <h1>A random title</h1>
 
