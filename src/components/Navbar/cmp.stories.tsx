@@ -18,6 +18,11 @@ const defaultArgs: Partial<NavbarProps> = {
 
 // ---
 
+// @note: This is a workaround to avoid a missing key error
+// Since key is injected directly in mounted component
+// Possible solution: pass links and buttons as a single React Fragment that will be iterated on
+
+/* eslint-disable react/jsx-key */
 const navLinks = [
   <a href="#">Solutions</a>,
   <a href="#">Indexing</a>,
@@ -30,6 +35,8 @@ const navButtons = [
     Whitepaper
   </Button>
 ]
+/* eslint-enable react/jsx-key */
+
 
 const Template: ComponentStory<typeof Navbar> = (args) => (
   <>
