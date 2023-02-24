@@ -8,6 +8,7 @@ import {
   pxToRem,
 } from '../styles'
 import {
+  ThemeBreakpoint,
   ThemeButton,
   ThemeColor,
   ThemeEffect,
@@ -15,7 +16,15 @@ import {
   ThemeGradient,
   ThemeIcon,
   ThemeTypo,
-} from './styles'
+} from './types'
+
+const breakpoint: ThemeBreakpoint = {
+  xl: pxToRem(1200),
+  lg: pxToRem(1024),
+  md: pxToRem(768),
+  sm: pxToRem(480),
+  xs: pxToRem(320),
+}
 
 const color: ThemeColor = {
   base0: '#FFFFFF',
@@ -229,6 +238,14 @@ const typo: ThemeTypo = {
     size: font.size.sm,
     lineHeight: 1.666
   },
+  form: {
+    tag: false,
+    family: font.family.body,
+    style: 'normal',
+    weight: 400,
+    size: font.size.lg,
+    lineHeight: 1.167
+  }
 }
 
 const icon: ThemeIcon = {
@@ -262,6 +279,7 @@ const theme: DefaultTheme = {
   button,
   gradient,
   effect,
+  breakpoint,
 }
 
 export default theme
