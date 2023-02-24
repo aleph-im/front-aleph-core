@@ -30,6 +30,11 @@ export const StyledHeadingWrapper = styled.div<ResponsiveNavBarProps>`
       justify-content: space-between;
       padding: 25px;
       background-color: ${isOpen ? '#07071366' : theme.color.base1};
+
+      ${getResponsiveCss('md', css`
+          background-color: ${theme.color.base1};
+        `,
+      )}
     `
   }}
 `
@@ -54,6 +59,7 @@ export const StyledNavWrapper = styled.nav<ResponsiveNavBarProps>`
     return css`
       display: ${isOpen ? 'block' : 'none'};
       padding-bottom: 25px;
+      margin: 0;
 
       ${getResponsiveCss('md', css`
           display: flex;
@@ -108,7 +114,7 @@ export const StyledNavlink = styled.li<NavlinkProps>`
 
       ${getResponsiveCss('md', css`
           margin: 0;
-          
+
           ${withSlash
             ? css`
                 &:not(:last-child)::after {
