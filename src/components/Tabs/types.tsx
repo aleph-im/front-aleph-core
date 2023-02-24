@@ -1,4 +1,4 @@
-export type Tab = {
+export type TabType = {
   name: string
   component: JSX.Element
   disabled?: boolean
@@ -6,7 +6,7 @@ export type Tab = {
 }
 
 export type TabsProps = {
-  tabs: Tab[]
+  tabs: TabType[]
   onTabChange?: (fromIndex: number, toIndex: number) => void
   defaultSelected?: number
 }
