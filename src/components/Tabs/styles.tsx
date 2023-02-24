@@ -17,6 +17,7 @@ export const StyledTabsItem = styled.div<StyledTabItemProps>`
       display: flex;
       line-height: 1rem;
       height: 1rem;
+      user-select: none;
 
       &::after {
         content: '';
