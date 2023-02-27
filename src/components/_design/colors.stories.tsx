@@ -107,9 +107,9 @@ const ColorsTemplate: ComponentStory<any> = () => {
       </div>
       <div>
         <h3>Noise-base</h3>
-        <Rect className="fx-noise-base0"></Rect>
-        <Rect className="fx-noise-base1"></Rect>
-        <Rect className="fx-noise-base2"></Rect>
+        <Rect className="fx-noise-base"></Rect>
+        <Rect className="fx-noise-dark"></Rect>
+        <Rect className="fx-noise-light"></Rect>
       </div>
       <div>
         <h3>Noise-color</h3>

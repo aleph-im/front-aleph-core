@@ -111,9 +111,9 @@ export type ThemeNoiseEffect = {
   main1: GenericThemeEffectCss
   main2: GenericThemeEffectCss
 
-  base0: GenericThemeEffectCss
-  base1: GenericThemeEffectCss
-  base2: GenericThemeEffectCss
+  base: GenericThemeEffectCss
+  dark: GenericThemeEffectCss
+  light: GenericThemeEffectCss
 }
 
 export type ThemeDarkEffect = {
