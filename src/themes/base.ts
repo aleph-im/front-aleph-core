@@ -1,11 +1,11 @@
 import { DefaultTheme } from 'styled-components'
 import {
-  getDarkEffectCss,
-  getGlassEffectCss,
+  pxToRem,
+} from '../styles/utils'
+import {
   getGlowHoverEffectCss,
   getGlowMaxEffectCss,
   getGlowMinEffectCss,
-  pxToRem,
 } from '../styles'
 import { getGradientNoiseEffectCss, getPlainNoiseEffectCss } from '../styles/noise'
 import {
@@ -18,13 +18,24 @@ import {
   ThemeIcon,
   ThemeTypo,
 } from './types'
+import { getDarkEffectCss, getGlassEffectCss } from '../styles/glass'
+
+// const breakpoint: ThemeBreakpoint = {
+//   xxl: pxToRem(1400),
+//   xl: pxToRem(1200),
+//   lg: pxToRem(1024),
+//   md: pxToRem(768),
+//   sm: pxToRem(480),
+//   xs: pxToRem(320),
+// }
 
 const breakpoint: ThemeBreakpoint = {
+  xxl: pxToRem(1400),
   xl: pxToRem(1200),
-  lg: pxToRem(1024),
+  lg: pxToRem(992),
   md: pxToRem(768),
-  sm: pxToRem(480),
-  xs: pxToRem(320),
+  sm: pxToRem(576),
+  xs: pxToRem(0),
 }
 
 const color: ThemeColor = {

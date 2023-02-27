@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
-import { StyledTabItemProps } from './types'
+import TextGradient from '../TextGradient'
+import { StyledTabItemProps, TabLabelProps, TabType } from './types'
 
 export const StyledTabsHeader = styled.div`
   display: flex;
@@ -29,21 +30,28 @@ export const StyledTabsItem = styled.div<StyledTabItemProps>`
         bottom: 0;
         left: 0;
       }
-
-      // Unsetting TextGradient styles
-      span {
-        font-weight: bold;
-        margin: 0;
-        line-height: unset;
-      }
     `
   }}
 `
 
-export const StyledTabLabel = styled.div`
-  ${ ({ theme }) => css`
-    transform: translate(5px, -10px);
-    color: ${theme.color.base0};
-  ` 
-  }
+export const StyledSelectedTab = styled(TextGradient)`
+  font-weight: bold;
+  margin: 0;
+  line-height: unset;
+`
+
+export const StyledTabLabel = styled.div<TabLabelProps>`
+  ${({ theme, labelPosition = 'top' }) => {
+    const multiplier = labelPosition === 'top' ? -1 : 1
+    const offset = theme.typo.info.size * multiplier
+
+    return css`
+      transform: translate(5px, ${offset}rem);
+      color: ${theme.color.base0};
+      font-size: ${theme.typo.info.size}rem;
+      font-weight: ${theme.typo.info.weight};
+      font-family: ${theme.typo.info.family};
+      font-style: ${theme.typo.info.style};
+    `
+  }}
 `
