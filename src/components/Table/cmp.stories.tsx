@@ -10,10 +10,18 @@ export default {
   title: 'Components/UI/Table',
   component: Table,
   decorators: [withDesign],
+  argTypes: {
+    border: {
+      control: {
+        type: 'select',
+        options: ['none', 'dashed', 'solid'],
+      }
+    }
+  }
 } as ComponentMeta<typeof Table>
 
 const defaultArgs: Partial<StyledTableProps> = {
-  bordered: true,
+  border: 'dashed',
 }
 
 const dataArgs: Partial<TableProps> = {

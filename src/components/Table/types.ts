@@ -1,3 +1,5 @@
+export type BorderType = 'none' | 'dashed' | 'solid'
+
 type Column = {
   selector: <T>(row: T) => string | number
   label: string
@@ -11,5 +13,5 @@ export type TableProps = {
 }
 
 export type StyledTableProps = {
-  bordered?: boolean
+  border: BorderType
 }

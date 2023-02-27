@@ -9,7 +9,7 @@ const toggleSort = (sort: SortDirection): SortDirection => {
   return sort === 'asc' ? 'desc' : 'asc'
 }
 
-const Table = ({ columns, data, bordered }: TableProps & StyledTableProps) => {
+const Table = ({ columns, data, border }: TableProps & StyledTableProps) => {
   const isSortedColumn = (column: string) => sortedColumn.column === column
   const [sortedColumn, setSortedColumn] = React.useState({
     column: '',
@@ -39,7 +39,7 @@ const Table = ({ columns, data, bordered }: TableProps & StyledTableProps) => {
   )
 
   return (
-    <StyledTable bordered={bordered}>
+    <StyledTable border={border}>
       <thead>
         <tr>
           {columns.map(({ sortable, label }, i) => (
