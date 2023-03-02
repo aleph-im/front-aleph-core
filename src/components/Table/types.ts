@@ -13,5 +13,6 @@ export type TableProps = {
 }
 
 export type StyledTableProps = {
+  oddRowNoise?: boolean
   border: BorderType
 }

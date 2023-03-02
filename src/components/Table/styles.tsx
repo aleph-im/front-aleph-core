@@ -4,10 +4,10 @@ import { StyledTableProps } from './types'
 export const StyledTable = styled.table<StyledTableProps>`
   ${({ border }) => {
   const hasBorder = border !== 'none'
-  console.log('hasBorder', hasBorder, border)
   return css`
     width: 100%;
-    border-collapse: ${hasBorder ? 'separate' : 'collapse'};
+    border-collapse: collapse;
+    border-spacing: 0 10px;
 
     thead {
       text-transform: uppercase;

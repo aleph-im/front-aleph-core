@@ -22,6 +22,7 @@ export default {
 
 const defaultArgs: Partial<StyledTableProps> = {
   border: 'dashed',
+  oddRowNoise: true,
 }
 
 const dataArgs: Partial<TableProps> = {
