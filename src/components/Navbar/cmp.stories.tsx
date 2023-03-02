@@ -31,16 +31,15 @@ const navLinks = [
   <a href="#">Team</a>,
 ]
 const navButtons = [
-  <Button as="a" variant="secondary" color="main0" kind="neon" size="regular">
+  <Button as="button" variant="secondary" color="main0" kind="neon" size="regular">
     Whitepaper
   </Button>
 ]
 /* eslint-enable react/jsx-key */
 
-
 const Template: ComponentStory<typeof Navbar> = (args) => (
   <>
-    <Navbar {...args} navLinks={navLinks} navButtons={navButtons}  />
+    <Navbar {...args} navLinks={navLinks} navButtons={navButtons} />
 
     <h1>A random title</h1>
 

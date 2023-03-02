@@ -17,15 +17,15 @@ const Navbar = ({
   withLogo = true,
   navLinks = [],
   navButtons = [],
+  ...rest
 }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleIsOpen = () => setIsOpen(!isOpen);
+
   return (
-    <StyledNavbarWrapper>
+    <StyledNavbarWrapper {...{ ...rest }}>
       <StyledHeadingWrapper isOpen={isOpen}>
-        <div>
-          {withLogo && <Logo text={withLabel} />}
-        </div>
+        {withLogo && <Logo text={withLabel} />}
 
         <StyledBurgerIconWrapper>
           <Button
